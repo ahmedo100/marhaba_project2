@@ -1,0 +1,30 @@
+name: marhaba_project
+description: A food exchange app
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+  intro_views_flutter: '^2.6.0'
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: Heebo
+      fonts:
+         - asset: assets/fonts/Heebo-Bold.ttf
+
+    - family: FacebookIcon
+      fonts:
+         - asset: assets/fonts/FacebookIcon.ttf
