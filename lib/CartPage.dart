@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CartPage extends StatelessWidget {
@@ -12,11 +13,14 @@ class CartPage extends StatelessWidget {
           style: TextStyle(color: Colors.black87),
         ),
         leading: IconButton(
+
             icon: Icon(
               Icons.arrow_back,
               color: Colors.black87,
             ),
-            onPressed: () {}),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
       ),
       body: Column(
         children: <Widget>[
@@ -27,7 +31,11 @@ class CartPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: CartItem(productName: "Tchekhchokha",imageUrl: "assets/images/chekhchokha.png",productPrice: 800,productQuantity: 4 ,),
-          )
+          ),
+          Spacer(),
+          Divider(height: 2.0,),
+
+          BottomCartWidget(),
         ],
       ),
     );
@@ -53,7 +61,7 @@ class _CartItemState extends State<CartItem> {
       crossAxisAlignment: CrossAxisAlignment.center  ,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Divider(),
+        Divider(height: 2.0,),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
 
@@ -74,18 +82,22 @@ class _CartItemState extends State<CartItem> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text(
-                  this.widget.productName,
-                  style: TextStyle(fontSize: 14),
-                ),
-                Text(
-                  "${this.widget.productPrice} DA ",
-                  style: TextStyle(color: Colors.grey),
-                )
-              ],
+            Padding(
+              padding: const EdgeInsets.only(left:8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    this.widget.productName,
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  Text(
+                    "${this.widget.productPrice} DA ",
+                    style: TextStyle(color: Colors.grey),
+                  )
+                ],
+              ),
             ),
             ],
         ),
@@ -115,7 +127,8 @@ class _CartItemState extends State<CartItem> {
                 )
           ],
         ),
-        Divider(),
+
+        Divider(height: 2.0,),
       ],
     );
   }
@@ -123,5 +136,42 @@ class _CartItemState extends State<CartItem> {
 
 
 class BottomCartWidget extends StatelessWidget {
-  
+  @override
+  Widget build(BuildContext context) {
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      child: Column(
+        children: <Widget>[
+
+        Padding(
+          padding: const EdgeInsets.only(left:20.0,right: 20),
+          child: Row(
+            children: <Widget>[
+              Text("Total",style: TextStyle(fontSize: 16,fontFamily: "Heebo"),),
+              Spacer(),
+              Text("800Da")
+            ],
+          ),
+        ),
+          Padding(
+            padding: const EdgeInsets.only(left:20.0,right: 20),
+            child: Row(
+              children: <Widget>[
+                Text("Reduction",style: TextStyle(fontSize: 16,fontFamily: "Heebo"),),
+                Spacer(),
+                Text("0 Da")
+              ],
+            ),
+          ),
+          CupertinoButton(
+            onPressed: (){},
+            color: Colors.orangeAccent,
+            child: Text("Acheter",style: TextStyle(color: Colors.black87),),
+          )
+        ],
+      ),
+    );
+  }
+
 }
